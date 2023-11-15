@@ -1,0 +1,21 @@
+#product-list::-webkit-scrollbar{
+    width: 10px;
+}
+
+#product-list::-webkit-scrollbar-thumb{
+    background-color: gray;
+    border-radius:10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+#product-list::-webkit-scrollbar-track{
+    background-color: rgb(255, 255, 255);
+    border-bottom-right-radius: 5px;
+}
+.inside-item:last-child{
+    border-bottom: none;
+}
+.select-item{
+    background-color: blue;
+    color: white;
+}

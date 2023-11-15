@@ -1,5 +1,5 @@
 const productList = document.getElementById("product-list");
-const search = document.getElementById("search");
+const search = document.getElementById("search-product");
 
 async function getproducts() {
   try {
@@ -15,9 +15,10 @@ getproducts();
 let filterProduct = [];
 
 // search product list
+
 function filterBySearch(data) {
-    search.addEventListener("keyup", (e) => {
-      productList.innerHTML = "";
+  search.addEventListener("keyup", (e) => {
+    productList.innerHTML = "";
     const searchValue = e.target.value.toLowerCase();
     if (searchValue.length == 0) {
       return;
@@ -26,14 +27,19 @@ function filterBySearch(data) {
       item.title.toLowerCase().includes(searchValue)
     );
     displayProduct();
+    if (filterProduct.length > 0) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Enter") {
+        navigateAndSelectProduct(e.key);
+      }
+    }
   });
 }
-
 // display product
 function displayProduct() {
   if (filterProduct) {
     filterProduct.map((data) => {
       const itemBox = document.createElement("div");
+      itemBox.setAttribute("id", data.id);
       itemBox.classList.add(
         "bg-white",
         "px-10",
@@ -42,7 +48,8 @@ function displayProduct() {
         "items-start",
         "gap-10",
         "border-b",
-        "border-black"
+        "border-black",
+        "inside-item"
       );
       itemBox.innerHTML = `
                 <div class="w-16">
@@ -56,8 +63,26 @@ function displayProduct() {
                         : data.title
                     }</p>
                 </div>
-        `;
+                `;
       productList.append(itemBox);
     });
+  }
+}
+let currentNumber = -1;
+
+function navigateAndSelectProduct(key) {
+  if (key === "ArrowUp") {
+    currentNumber -= 1;
+  } else if (key === "ArrowDown") {
+    currentNumber += 1;
+    const productIdToSelect = filterProduct[currentNumber].id.toString();
+    const productItemContainer = document.getElementById(productIdToSelect);
+    if (productItemContainer) {
+      productItemContainer.classList.add("select-item");
+    }
+    console.log(productIdToSelect);
+    console.log(productItemContainer);
+  } else if (key === "Enter") {
+    console.log(currentNumber);
   }
 }

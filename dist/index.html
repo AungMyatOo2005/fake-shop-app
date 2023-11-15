@@ -12,6 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body
     class="bg-blue-950 min-h-screen flex flex-col items-center justify-center py-10"
@@ -25,15 +26,10 @@
           type="text"
           class="shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-md outline-none bg-black text-white py-2 px-4 placeholder:text-gray-400"
           placeholder="Search Product..."
-          id="search"
+          id="search-product"
         />
-        <button
-          class="bg-black h-14 w-14 rounded-[50%] flex items-center justify-center active:scale-95"
-        >
-          <i class="fa-solid fa-search text-xl text-white"></i>
-        </button>
       </div>
-      <div id="product-list">
+      <div id="product-list" class="max-h-[450px] overflow-auto rounded-b-md">
       </div>
     </div>
     <script src="./script.js"></script>
